@@ -1,24 +1,16 @@
-# pizza-front
+# Mobility Project Documentation
 
-## Project setup
-```
-npm install
-```
+#### Table of contents
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+1. [ Architecture. ](#archi)
+2. [ Choix des technos. ](#technos)
 
-### Compiles and minifies for production
-```
-npm run build
-```
+<a name="archi"></a>
+## 1. Architecture
 
-### Lints and fixes files
-```
-npm run lint
-```
+sometext
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+<a name="technos"></a>
+## 2. Choix des technos
+
+sometext
