@@ -195,14 +195,36 @@ npm run serve
 ```
 visiter : **localhost:8080**
 
+
+![alt text](https://www.fogits.com/wp-content/uploads/2019/10/docker-logo-png.png)
+[lien vers l'image docker ](https://hub.docker.com/repository/docker/alamidrissitaha/mobility-front)
+```docker
+docker pull alamidrissitaha/mobility-front:v1
+```
+
 ### Serveur
 
 ```git
 git clone https://github.com/TahaAlamiIdrissi/mobility-back
 ```
+Installation des dépendances
+```dotnet
+dotnet clean
 
-Si on ne dispose pas du **SDK** et du **runtime .NET** ainsi que de **mssql** on peut lancer le serveur dans un conteneur docker
+dotnet build
 
+dotnet restore
+```
+
+Lancement du serveur
+```dotnet
+dotnet watch run
+```
+lancer sur : **localhost:5000**
+
+Si on ne dispose pas du **SDK** et du **runtime .NET** ainsi que de **mssql** on peut lancer le serveur dans un conteneur docker<br>
+ *j'ai essayé de mettre en place un dockerfile pour le front qui est fonctionel, en ce qui concerne le backend, le docker-compose est fonctionnel mais a besoin de modification au niveau du code*
+ 
 ```docker
 docker-compose up
 ```
