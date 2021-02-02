@@ -17,6 +17,9 @@ export class MobilityService {
     validateMobility(path) {
         return axios.post(path);
     }
+    updateMobility(path,mobility) {
+        return axios.put(path,mobility);
+    }
 }
 
 export default new MobilityService();

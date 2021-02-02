@@ -139,6 +139,8 @@
 <script>
 import mobilityService from "../services/MobilityService";
 import 'vuetify/dist/vuetify.min.css'
+import 'sweetalert2/dist/sweetalert2.min.css';
+
 export default {
   name: "Request",
   data() {
@@ -164,8 +166,9 @@ export default {
         .addMobility("mobility/create", this.Mobility)
         .then((res) => {
           console.log(res);
+          this.$swal('Mobility Added successfully')
           this.$router.replace({
-            name: "ListMobilities",
+            name: "General",
           });
         })
         .catch((err) => {

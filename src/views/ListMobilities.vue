@@ -41,7 +41,14 @@
           <v-card-actions>
             <v-btn color="primary" text @click="edit"> Edit </v-btn>
             <v-btn color="red" text @click="remove"> Delete </v-btn>
-            <v-btn color="success" text @click="validate"> Validate </v-btn>
+            <v-btn
+              color="success"
+              text
+              v-if="this.student.state == false"
+              @click="validate"
+            >
+              Validate
+            </v-btn>
             <v-spacer></v-spacer>
             <v-btn color="grey" text @click="dialog = false"> Close </v-btn>
           </v-card-actions>
@@ -68,6 +75,8 @@
 <script>
 // @ is an alias to /src
 import mobilityService from "../services/MobilityService";
+import "sweetalert2/dist/sweetalert2.min.css";
+
 export default {
   name: "ListMobilities",
   components: {},
@@ -101,18 +110,19 @@ export default {
         element.startingDate = element.startingDate.split("T")[0];
         element.endingDate = element.endingDate.split("T")[0];
         element.submissionDate = element.submissionDate.split("T")[0];
-        if (element.state == false) {
-          element.state = "Not valid";
-        } else {
-          element.state = "Valid";
-        }
+        // if (element.state == false) {
+        //   element.state = "Not valid";
+        // } else {
+        //   element.state = "Valid";
+        // }
       });
       this.students = res.data;
+      console.log(this.students);
     });
   },
   methods: {
     getColor(state) {
-      if (state == "Not valid") return "red";
+      if (state === false) return "red";
       else return "green";
     },
     handleClick(value) {
@@ -127,19 +137,41 @@ export default {
       });
     },
     remove() {
-      mobilityService
-        .removeMobility("mobility/remove/" + this.student.id)
-        .then((res) => {
-          console.log(res);
-          this.dialog = false;
-        })
-        .catch((err) => console.log(err));
+      this.$swal({
+        title: "Delete this student ?",
+        text: "Are you sure? You won't be able to revert this!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Yes, Delete it!",
+      }).then((result) => {
+        // <--
+        if (result.value) {
+          mobilityService
+            .removeMobility("mobility/remove/" + this.student.id)
+            .then((res) => {
+              console.log(res);
+              this.students = this.students.filter(
+                (p) => p.id != this.student.id
+              );
+              this.dialog = false;
+            })
+            .catch((err) => console.log(err));
+        }
+      });
     },
     validate() {
       mobilityService
         .validateMobility("mobility/validate/" + this.student.id)
         .then((res) => {
           console.log(res);
+          let thisState = this.students.find((e) => e.id === this.student.id);
+          thisState.state = !thisState.state;
+          //   if (thisState.state == false) {
+          //   thisState.state = "Not valid";
+          // } else {
+          //   thisState.state = "Valid";
+          // }
           this.dialog = false;
         })
         .catch((err) => console.log(err));

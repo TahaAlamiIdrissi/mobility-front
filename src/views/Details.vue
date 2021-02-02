@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="create">
+  <form @submit.prevent="update">
     <v-app id="inspire">
       <v-main>
         <v-container class="fill-height" fluid>
@@ -157,9 +157,23 @@ export default {
       .getMobility("mobility/GetMobility/" + this.$route.params.studentId)
       .then((res) => {
         this.Mobility = res.data;
-        console.log(this.Mobility);
       });
   },
+  methods: {
+    update(){
+       mobilityService
+        .updateMobility("mobility/edit", this.Mobility)
+        .then((res) => {
+          console.log(res);
+          this.$router.replace({
+            name: "ListMobilities",
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }
 };
 </script>
 

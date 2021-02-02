@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-toolbar dark prominent>
-      <router-link to="/map"
+      <router-link to="/"
         ><img src="../assets/img/logo.png" height="150px" alt="pizza"
       /></router-link>
 
@@ -12,6 +12,7 @@
         <router-link class="router-link" to="/mobilities"
           >Mobilities</router-link
         >
+        <router-link class="router-link" to="/map">Map</router-link>
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
@@ -76,6 +77,8 @@ export default {
         { title: "Register" },
         { title: "Create" },
         { title: "Mobilities" },
+        { title: "Map" },
+
       ],
     };
   },
@@ -117,6 +120,11 @@ export default {
         case "Mobilities":
           this.$router.replace({
             name: "ListMobilities",
+          });
+          break; 
+        case "Map":
+          this.$router.replace({
+            name: "Home",
           });
           break;   
       }
