@@ -1,10 +1,10 @@
-# Mobility Project Documentation
+# Documentation projet mobilité TSE
 
 **lien vers le backend :** [SERVEUR ](https://github.com/TahaAlamiIdrissi/mobility-back)<br>
 **lien vers le frontend :** [CLIENT ](https://github.com/TahaAlamiIdrissi/mobility-front)
 
 
-#### Table of contents
+#### Table des matières
 
 1. [ Architecture. ](#archi)
 2. [ Choix des technos. ](#technos)
@@ -233,6 +233,22 @@ Si on ne dispose pas du **SDK** et du **runtime .NET** ainsi que de **mssql** on
 docker-compose up
 ```
 
+Reception des mails :
+
+Pour reçevoir des mails, vous devez fournir les informations suivantes :
+```json
+"Email":{
+    "Server":"smtp.mailtrap.io",
+    "Port":"2525",
+    "SenderName":"<Sender_name>",
+    "SenderEmail":"<Sender_mail>",
+    // si utilisation de mailtrap ----------------
+    "Account":"*********",
+    "Password":"************"
+    //------------------------------------
+  },
+```
+Dans le fichier appsettings.json **SERVEUR**
 <a name="video"></a>
 ## 4. Screencast
 
